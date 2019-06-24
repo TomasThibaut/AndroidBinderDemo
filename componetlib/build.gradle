@@ -1,17 +1,13 @@
-if (module1.toBoolean()) {
-    apply plugin: 'com.android.application'
-} else {
-    apply plugin: 'com.android.library'
-}
+apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion compile_sdk_version.toInteger()
+    compileSdkVersion 28
+
+
+
     defaultConfig {
-        if (module1.toBoolean()) {
-            applicationId "cn.gc.module1"
-        }
-        minSdkVersion min_sdk_version.toInteger()
-        targetSdkVersion target_sdk_version.toInteger()
+        minSdkVersion 21
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
 
@@ -35,6 +31,4 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation project(':componetlib')
-
 }

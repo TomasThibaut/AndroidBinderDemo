@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -7,13 +7,75 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello World!"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+    <!--<cn.gc.module2.timer.TextCountdownTimer-->
+    <!--android:id="@+id/timerText"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="Hello World!"-->
+    <!--app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--app:layout_constraintLeft_toLeftOf="parent"-->
+    <!--app:layout_constraintRight_toRightOf="parent"-->
+    <!--app:layout_constraintTop_toTopOf="parent"/>-->
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:background="@color/colorPrimary"
+            android:layout_height="wrap_content">
+        <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+
+            <TextView
+                    android:text="sdjflsdjfl"
+                    android:background="@android:color/holo_purple"
+                    android:layout_width="match_parent" android:layout_height="130dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+            <TextView android:layout_width="match_parent" android:layout_height="48dp"/>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent" android:layout_height="wrap_content">
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp">
+
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+    <ImageView
+            android:layout_centerHorizontal="true"
+            android:src="@color/colorPrimary"
+            android:layout_width="15dp"
+            android:layout_height="15dp"/>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <Button
+                android:text="button"
+                android:onClick="start"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <Button
+                android:text="button"
+                android:onClick="start2"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <RelativeLayout android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+            <cn.gc.module2.CannotScrollList
+                    android:id="@+id/list"
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"/>
+            <ImageView
+                    android:id="@+id/floater"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:src="@mipmap/ic_launcher"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

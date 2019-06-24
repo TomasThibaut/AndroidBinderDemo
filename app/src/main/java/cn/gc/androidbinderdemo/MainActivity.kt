@@ -53,7 +53,26 @@ class MainActivity : AppCompatActivity() {
                 logi("添加一位学生$it")
             }
         )
+    }
 
+    fun btn5(view: View) {
+
+    }
+
+    fun btn6(view: View) {
+        bindService(
+            Intent(this, ABindService::class.java),
+            object : ServiceConnection {
+                override fun onServiceDisconnected(name: ComponentName?) {
+
+                }
+
+                override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
+
+                }
+            },
+            Context.BIND_AUTO_CREATE
+        )
     }
 
 }

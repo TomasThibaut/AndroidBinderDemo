@@ -22,6 +22,10 @@
         </activity>
         <service android:name=".StudentManagerService"
                  android:process=":remote"/>
+        <service android:name=".ACommonService"/>
+        <service android:name=".AIntentService"/>
+        <service android:name=".ABindService"/>
+        <service android:name=".MessengerService"/>
     </application>
 
 </manifest>

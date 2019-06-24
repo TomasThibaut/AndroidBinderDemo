@@ -30,8 +30,12 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation project(':componetlib')
+    if (!module2.toBoolean()) {
+        implementation project(':module2')
+    }
 
-    implementation project(':module1')
-
-    implementation project(':module2')
+    if (!module1.toBoolean()) {
+        implementation project(':module1')
+    }
 }
