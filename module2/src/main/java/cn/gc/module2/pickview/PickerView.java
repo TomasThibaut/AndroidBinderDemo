@@ -8,6 +8,7 @@ import android.os.Message;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import cn.gc.module2.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,8 +37,8 @@ public class PickerView extends View {
     private int mCurrentSelected;
     private Paint mPaint;
 
-    private float mMaxTextSize = 80;
-    private float mMinTextSize = 40;
+    private float mMaxTextSize = Utils.dip2px(getContext(),13);
+    private float mMinTextSize = Utils.dip2px(getContext(),12);
 
     private float mMaxTextAlpha = 255;
     private float mMinTextAlpha = 120;
@@ -56,6 +57,10 @@ public class PickerView extends View {
     private onSelectListener mSelectListener;
     private Timer timer;
     private MyTimerTask mTask;
+
+    public int getCurrentSelected() {
+        return mCurrentSelected;
+    }
 
     Handler updateHandler = new Handler() {
 
@@ -97,7 +102,7 @@ public class PickerView extends View {
 
     public void setData(List<String> datas) {
         mDataList = datas;
-        mCurrentSelected = datas.size() / 2;
+        mCurrentSelected = datas.size()/2;
         invalidate();
     }
 
@@ -153,7 +158,7 @@ public class PickerView extends View {
         mViewHeight = getMeasuredHeight();
         mViewWidth = getMeasuredWidth();
         // 按照View的高度计算字体大小
-        mMaxTextSize = mViewHeight / 4.0f;
+        mMaxTextSize = mViewHeight / 6.5f;
         mMinTextSize = mMaxTextSize / 2f;
         isInit = true;
 //        invalidate();
