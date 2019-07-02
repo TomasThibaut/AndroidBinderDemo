@@ -1,9 +1,9 @@
 package cn.gc.module2
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
@@ -16,13 +16,17 @@ class KeepRulerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_keep_ruler)
-        ruler_list.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, true)
+        ruler_list.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(
+            this,
+            androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL,
+            true
+        )
 
         ruler_list.addOnScrollListener(listListener)
 
         val headerFooterWidth = Utils.getScreenWidth(this) / 2
-        val paramHeader = RecyclerView.LayoutParams(headerFooterWidth, Utils.dip2px(this, 80f).toInt())
-        val paramFooter = RecyclerView.LayoutParams(headerFooterWidth, Utils.dip2px(this, 80f).toInt())
+        val paramHeader = androidx.recyclerview.widget.RecyclerView.LayoutParams(headerFooterWidth, Utils.dip2px(this, 80f).toInt())
+        val paramFooter = androidx.recyclerview.widget.RecyclerView.LayoutParams(headerFooterWidth, Utils.dip2px(this, 80f).toInt())
 
         val header = View(this).apply { layoutParams = paramHeader }
         val footer = View(this).apply { layoutParams = paramFooter }
@@ -32,13 +36,13 @@ class KeepRulerActivity : AppCompatActivity() {
 //        ruler_list.adapter = adapter
     }
 
-    val listListener = object : RecyclerView.OnScrollListener() {
-        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+    val listListener = object : androidx.recyclerview.widget.RecyclerView.OnScrollListener() {
+        override fun onScrolled(recyclerView: androidx.recyclerview.widget.RecyclerView, dx: Int, dy: Int) {
             val xOffset = recyclerView.computeHorizontalScrollOffset()
             logi("KeepRulerActivity scrollX = $xOffset")
         }
 
-        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+        override fun onScrollStateChanged(recyclerView: androidx.recyclerview.widget.RecyclerView, newState: Int) {
             super.onScrollStateChanged(recyclerView, newState)
         }
     }

@@ -6,11 +6,11 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.content.Intent
 import android.graphics.PointF
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.LinearSmoothScroller
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSmoothScroller
+import androidx.recyclerview.widget.RecyclerView
 import android.util.DisplayMetrics
 import android.util.Log
 import android.util.TypedValue
@@ -128,12 +128,12 @@ class MainActivity : AppCompatActivity() {
     var index = 0
 
 
-    class SlowScrollLayoutManager(context: Context) : LinearLayoutManager(context) {
+    class SlowScrollLayoutManager(context: Context) : androidx.recyclerview.widget.LinearLayoutManager(context) {
         var millisecondsPerInch = 10f;
 
-        override fun smoothScrollToPosition(recyclerView: RecyclerView?, state: RecyclerView.State?, position: Int) {
+        override fun smoothScrollToPosition(recyclerView: androidx.recyclerview.widget.RecyclerView?, state: androidx.recyclerview.widget.RecyclerView.State?, position: Int) {
 
-            val linearSmoothScroller = object : LinearSmoothScroller(recyclerView?.context) {
+            val linearSmoothScroller = object : androidx.recyclerview.widget.LinearSmoothScroller(recyclerView?.context) {
                 override fun computeScrollVectorForPosition(targetPosition: Int): PointF? {
 //                    return super.computeScrollVectorForPosition(targetPosition)
                     return this@SlowScrollLayoutManager.computeScrollVectorForPosition(targetPosition);

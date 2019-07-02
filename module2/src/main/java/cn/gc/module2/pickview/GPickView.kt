@@ -1,8 +1,8 @@
 package cn.gc.module2.pickview
 
 import android.content.Context
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.util.AttributeSet
 import android.view.ViewGroup
 import android.widget.LinearLayout
@@ -38,8 +38,8 @@ class GPickView(context: Context, attributeSet: AttributeSet?) : LinearLayout(co
         }
 
 
-        val halfDayList = RecyclerView(context).apply {
-            layoutManager = LinearLayoutManager(context)
+        val halfDayList = androidx.recyclerview.widget.RecyclerView(context).apply {
+            layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
             layoutParams = LayoutParams(Utils.dip2px(context, 35f).toInt(), ViewGroup.LayoutParams.MATCH_PARENT)
             adapter = BaseBindingRecyclerAdapter<String, GpickviewItemLayoutBinding>(
                 data1,
@@ -50,8 +50,8 @@ class GPickView(context: Context, attributeSet: AttributeSet?) : LinearLayout(co
         }
 
 
-        val hourList = RecyclerView(context).apply {
-            layoutManager = LinearLayoutManager(context)
+        val hourList = androidx.recyclerview.widget.RecyclerView(context).apply {
+            layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
             layoutParams = LayoutParams(Utils.dip2px(context, 35f).toInt(), ViewGroup.LayoutParams.MATCH_PARENT)
 //            addOnScrollListener(scrollListener)
             adapter = BaseBindingRecyclerAdapter<String, GpickviewItemLayoutBinding>(
@@ -62,8 +62,8 @@ class GPickView(context: Context, attributeSet: AttributeSet?) : LinearLayout(co
             }
         }
 
-        val minList = RecyclerView(context).apply {
-            layoutManager = LinearLayoutManager(context)
+        val minList = androidx.recyclerview.widget.RecyclerView(context).apply {
+            layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
             layoutParams = LayoutParams(Utils.dip2px(context, 35f).toInt(), ViewGroup.LayoutParams.MATCH_PARENT)
 //            addOnScrollListener(scrollListener)
             adapter = BaseBindingRecyclerAdapter<String, GpickviewItemLayoutBinding>(
@@ -81,12 +81,12 @@ class GPickView(context: Context, attributeSet: AttributeSet?) : LinearLayout(co
 
     var deltaX = 0
 
-    private val scrollListener = object : RecyclerView.OnScrollListener() {
-        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+    private val scrollListener = object : androidx.recyclerview.widget.RecyclerView.OnScrollListener() {
+        override fun onScrolled(recyclerView: androidx.recyclerview.widget.RecyclerView, dx: Int, dy: Int) {
             deltaX += dx
         }
 
-        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+        override fun onScrollStateChanged(recyclerView: androidx.recyclerview.widget.RecyclerView, newState: Int) {
             if (newState == 0) {
                 logi("scrollListener: $newState")
                 recyclerView.smoothScrollBy(-deltaX, 0)

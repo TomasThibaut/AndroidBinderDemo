@@ -1,8 +1,8 @@
 package cn.gc.module2
 
-import android.databinding.DataBindingUtil
-import android.databinding.ViewDataBinding
-import android.support.v7.widget.RecyclerView
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 
@@ -24,7 +24,7 @@ class BaseBindingRecyclerAdapter<T, DB : ViewDataBinding>(
     //    override fun _getItemCount(): Int = dataList.size
     override fun _getItemCount(): Int = Int.MAX_VALUE
 
-    override fun _onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
+    override fun _onCreateViewHolder(parent: ViewGroup?, viewType: Int): androidx.recyclerview.widget.RecyclerView.ViewHolder {
         val itemBinding: DB = DataBindingUtil.inflate(LayoutInflater.from(parent?.context), itemLayoutId, parent, false)
         return BaseBindingRecyclerViewHolder<T, DB>(itemBinding)
     }
@@ -36,7 +36,7 @@ class BaseBindingRecyclerAdapter<T, DB : ViewDataBinding>(
 
 class BaseBindingRecyclerViewHolder<T, DB : ViewDataBinding>(
     private val itemDataBinding: DB
-) : RecyclerView.ViewHolder(itemDataBinding.root) {
+) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemDataBinding.root) {
     fun bind(action: (T, DB, position: Int) -> Unit, entity: T, position: Int) {
         action(entity, itemDataBinding, position)
         itemDataBinding.executePendingBindings()
