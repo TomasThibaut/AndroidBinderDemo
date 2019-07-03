@@ -21,7 +21,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
+//缺乏对Disposable的管理，rxjava The result of subscribe is not used 警告
+    lintOptions {
+        disable 'CheckResult'
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
 }
 
 dependencies {
@@ -32,8 +39,8 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
     //rxjava2
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.17'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    implementation 'org.greenrobot:eventbus:3.1.1'
+    api 'io.reactivex.rxjava2:rxjava:2.1.17'
+    api 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    api 'org.greenrobot:eventbus:3.1.1'
 
 }

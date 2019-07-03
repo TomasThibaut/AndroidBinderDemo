@@ -18,6 +18,7 @@ import android.view.View
 import android.view.WindowManager
 import cn.gc.module2.databinding.ItemBinding
 import cn.gc.module2.pickview.PickViewActivity
+import cn.gc.module2.rxjava.RxJavaActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 import kotlin.concurrent.timerTask
@@ -112,7 +113,7 @@ class MainActivity : AppCompatActivity() {
 
     fun start(view: View) {
         animator?.start()
-
+        RxJavaActivity.launchActivity(this)
     }
 
 
