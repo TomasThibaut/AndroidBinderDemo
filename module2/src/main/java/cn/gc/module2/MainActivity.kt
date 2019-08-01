@@ -16,9 +16,11 @@ import android.util.Log
 import android.util.TypedValue
 import android.view.View
 import android.view.WindowManager
+import cn.gc.module2.chatagenttest.ChatTestActivity
 import cn.gc.module2.databinding.ItemBinding
 import cn.gc.module2.pickview.PickViewActivity
 import cn.gc.module2.rxjava.RxJavaActivity
+import cn.gc.module2.shell.ShellActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 import kotlin.concurrent.timerTask
@@ -54,15 +56,15 @@ class MainActivity : AppCompatActivity() {
         animator?.addListener(object : AnimatorListenerAdapter() {
             override fun onAnimationStart(animation: Animator?) {
                 height = floater.height.toFloat()
-                Log.i("G_C", "MainActivity height = $height")
+//                Log.i("G_C", "MainActivity height = $height")
             }
         })
         animator?.addUpdateListener {
             val value = (it.animatedValue as Float) * transX
             floater.translationX = value
             floater.translationY = getTansYFromX(value)
-            Log.i("G_C", "MainActivity translationX = ${floater.translationX}")
-            Log.i("G_C", "MainActivity translationY = ${floater.translationY}")
+//            Log.i("G_C", "MainActivity translationX = ${floater.translationX}")
+//            Log.i("G_C", "MainActivity translationY = ${floater.translationY}")
         }
         animator?.duration = 10000
 
@@ -106,14 +108,16 @@ class MainActivity : AppCompatActivity() {
     var height: Float = 0f
     fun getTansYFromX(x: Float): Float {
         val fl = height * x * x / 5000
-        Log.i("G_C", "MainActivity getTansYFromX = $fl")
+//        Log.i("G_C", "MainActivity getTansYFromX = $fl")
 
         return (fl)
     }
 
     fun start(view: View) {
         animator?.start()
-        RxJavaActivity.launchActivity(this)
+//          RxJavaActivity.launchActivity(this)
+        startActivity(Intent(this, ShellActivity::class.java))
+
     }
 
 
