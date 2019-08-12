@@ -115,8 +115,8 @@ class MainActivity : AppCompatActivity() {
 
     fun start(view: View) {
         animator?.start()
-//          RxJavaActivity.launchActivity(this)
-        startActivity(Intent(this, ShellActivity::class.java))
+          RxJavaActivity.launchActivity(this)
+//        startActivity(Intent(this, ShellActivity::class.java))
 
     }
 

@@ -4,10 +4,14 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.SystemClock
 import android.view.View
 import androidx.fragment.app.FragmentActivity
 import cn.gc.module2.R
 import cn.gc.module2.logi
+import cn.gc.module2.utils.CpuUtils
+import cn.gc.module2.utils.FinishedCallback
+import cn.gc.module2.utils.MultiFinishCheckQueue
 import io.reactivex.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -21,6 +25,8 @@ import org.greenrobot.eventbus.ThreadMode
 import org.reactivestreams.Subscriber
 import org.reactivestreams.Subscription
 import java.lang.NullPointerException
+import java.util.concurrent.ScheduledThreadPoolExecutor
+import java.util.concurrent.ThreadFactory
 import java.util.concurrent.TimeUnit
 
 class RxJavaActivity : AppCompatActivity() {
@@ -40,21 +46,91 @@ class RxJavaActivity : AppCompatActivity() {
         rxjava05()
     }
 
-    private fun rxjava05() {
-        startGuardPolling()
+    val i = 10
+    var j = 2
+    private fun rxjava06() {
+
     }
+    private fun rxjava05() {
+
+        val multiFinishCheckQueue = MultiFinishCheckQueue{
+            logi("rxjava05 isAllFinished")
+        }
+        multiFinishCheckQueue.add("ScheduledThreadPoolExecutor")
+        ScheduledThreadPoolExecutor(1, ThreadFactory{
+            Thread(it)
+        })
+            .scheduleAtFixedRate(Runnable {
+                multiFinishCheckQueue.finish("ScheduledThreadPoolExecutor")
+                logi("rxjava06 click")
+            }, 15, 5, TimeUnit.SECONDS)
+
+        val subscribe1 = Observable.interval(5, 3, TimeUnit.SECONDS)
+            .doOnSubscribe {
+                multiFinishCheckQueue.add("1")
+                logi("rxjava05 multiFinishCheckQueue.add(\"1\")")
+            }
+            .observeOn(Schedulers.newThread())
+            .subscribe {
+                multiFinishCheckQueue.finish("1")
+                logi("rxjava05 1, click")
+            }
+
+        val subscribe2 = Observable.interval(10, 3, TimeUnit.SECONDS)
+            .doOnSubscribe {
+                multiFinishCheckQueue.add("2")
+                logi("rxjava05 multiFinishCheckQueue.add(\"2\")")
+            }
+            .observeOn(Schedulers.newThread())
+            .subscribe {
+                logi("rxjava05 2, click")
+                multiFinishCheckQueue.finish("2")
+            }
+
+
+        /* var dis05: Disposable? = null
+         dis05 = Observable.interval(0, 2, TimeUnit.SECONDS)
+             .subscribe({
+
+                 logi("rxjava05 ${i / j}")
+             }, {
+                 dis1.dispose()
+                 logi("rxjava05 ${it.localizedMessage} / dis05 = ${dis05?.isDisposed} / dis1 = ${dis1.isDisposed}")
+             })
+         dis1.add(dis05)*/
+
+//        startGuardPolling()
+        /*val a = applyAction.debounce(1, TimeUnit.SECONDS)
+            .subscribe ({
+                logi("applyAction: $it")
+            },{
+                logi("applyAction error : ${it.localizedMessage}")
+
+            })*/
+        /*Thread {
+            logi("isRelease1")
+            while (isRelease) {
+
+            }
+            logi("isRelease2")
+        }.start()*/
+    }
+
+    private var isRelease = true
+
+    private val applyAction = PublishSubject.create<Int>()
 
     private fun startGuardPolling() {
         if (disGuard.size() > 0) disGuard.clear()
-        Observable.interval(1, TimeUnit.SECONDS)
+        val o = Observable.interval(1, TimeUnit.SECONDS)
             .subscribeOn(Schedulers.io())
             .doOnSubscribe { disGuard.add(it) }
-            .subscribe ({
+            .subscribe({
                 logi("startGuardPolling hello: ${Thread.currentThread().name}")
                 if (it == 3L)
                     Thread.sleep(10000)
                 logi("startGuardPolling bye: ${Thread.currentThread().name}")
-            },{
+            }, {
                 logi("startGuardPolling ${it.localizedMessage}")
             })
 
@@ -65,12 +141,39 @@ class RxJavaActivity : AppCompatActivity() {
 //            }
     }
 
+
+    var time = 0L
+    val duration: Long = 5 * 1000
+    var count = 0
     fun click02(view: View) {
-        Observable.just(1)
+        /* val currentClickTime = SystemClock.elapsedRealtime()
+         if (currentClickTime - time > duration) {
+             count = 0
+             time = currentClickTime
+         }
+         count++
+
+         if (count == 5) {
+             logi("开启成功")
+             count = 0
+             time = 0L
+         } else {
+             logi("还有${5 - count}次开启")
+         }*/
+
+
+        j = 0
+//        val cpuUsage = CpuUtils.getCpuUsage()
+//        logi("cpuUsage: $cpuUsage")
+//        isRelease = false
+//        applyAction.onNext(10*Math.random().toInt())
+        /*Observable.create<Int> {
+            return@create
+        }
             .subscribeOn(Schedulers.io())
             .subscribe {
                 disGuard.clear()
-            }
+            }*/
 
     }
 
