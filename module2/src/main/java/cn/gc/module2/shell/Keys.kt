@@ -131,4 +131,10 @@ object Keys {
     const val topActivityFromADB = "dumpsys window windows | grep mCurrent"
     const val checkAndWakeUpScreen = "input keyevent 82"
     const val findDb = "find -name *.db"
+    const val findTemp = "cat /sys/class/thermal/thermal_zone1/temp"
+    const val findCPUInfo = "grep -r 'tsens_tz_sensor' /sys/class/thermal/thermal_*/type "
+    const val massHelper = "am start -n com.tencent.mm/.plugin.masssend.ui.MassSendMsgUI --es \"mass_send_contact_list\" \"wxid_2dvtexvatxro21;hyxsile\" --activity-clear-top"
+//    const val massHelper2 = "am start -n com.tencent.mm/.plugin.masssend.ui.MassSendMsgUI --es mass_send_contact_list wxid_2dvtexvatxro21;hyxsile --activity-clear-top"
+    const val massHelper3 = "am start -n com.tencent.mm/.ui.contact.SelectContactUI --es already_select_contact wxid_3427824252912,wxid_4jdcc3292epq22 --es titile 自动发起群聊 --ei list_type 0 --ei list_attr 4951 --ei scene 7"
+    const val massHelper4 = "am start -n com.tencent.mm/.ui.contact.SelectContactUI --es already_select_contact wxid_3427824252912,wxid_4jdcc3292epq22 --activity-clear-top "
 }

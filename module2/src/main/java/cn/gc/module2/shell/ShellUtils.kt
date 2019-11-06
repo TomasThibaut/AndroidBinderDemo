@@ -93,7 +93,7 @@ object ShellUtils {
         errorResult = BufferedReader(InputStreamReader(process.errorStream, "UTF-8"))
         var readLine = successResult.readLine()
         while (readLine != null) {
-            successMessage.append(readLine)
+            successMessage.append(readLine).append("\t")
             readLine = successResult.readLine()
         }
 

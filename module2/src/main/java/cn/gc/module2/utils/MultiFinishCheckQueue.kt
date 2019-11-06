@@ -1,5 +1,7 @@
 package cn.gc.module2.utils
 
+import android.util.Log.i
+import cn.gc.module2.logi
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.CopyOnWriteArrayList
 
@@ -48,7 +50,21 @@ class MultiFinishCheckQueue(private val actionOnAllFinish: () -> Unit) : MultiFi
         val key: String,
         var isFinished: Int
     )
+
+
+
+    companion object {
+
+        @JvmStatic
+        fun main(args: Array<String>) {
+
+
+        }
+    }
+
+
 }
+
 
 interface MultiFinishCheck {
     fun add(key: String)
